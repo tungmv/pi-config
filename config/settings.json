@@ -1,0 +1,23 @@
+{
+  "enableSkillCommands": true,
+  "skills": [],
+  "lastChangelogVersion": "0.80.3",
+  "theme": "dark",
+  "defaultProvider": "x220",
+  "defaultModel": "sf-hy3",
+  "defaultThinkingLevel": "high",
+  "packages": [
+    "npm:pi-delete-session",
+    {
+      "source": "npm:pi-web-access",
+      "skills": [],
+      "extensions": [
+        "*"
+      ]
+    },
+    "git:github.com/pasky/pi-session-summary",
+    "npm:@tintinweb/pi-subagents"
+  ],
+  "enableInstallTelemetry": false,
+  "hideThinkingBlock": true
+}

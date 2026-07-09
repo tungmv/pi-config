@@ -1,0 +1,71 @@
+{
+  "providers": {
+    "x220": {
+      "baseUrl": "http://x220:4000/v1",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "nv-deepseek-v4-pro",
+          "name": "Nv Deepseek V4 Pro",
+          "contextWindow": 200000,
+          "maxTokens": 200000
+        },
+        {
+          "id": "nw-glm-5.2-flex",
+          "name": "Nw Glm 5.2 Flex",
+          "contextWindow": 200000,
+          "maxTokens": 200000
+        },
+        {
+          "id": "nw-glm-5.2-short-fast-flex",
+          "name": "Nw Glm 5.2 Short Fast Flex",
+          "contextWindow": 200000,
+          "maxTokens": 200000
+        },
+        {
+          "id": "nw-kimi-k2.6-fast",
+          "name": "Nw Kimi K2.6 Fast",
+          "contextWindow": 200000,
+          "maxTokens": 200000
+        },
+        {
+          "id": "oc-hy3-free",
+          "name": "Oc Hy3 Free",
+          "contextWindow": 200000,
+          "maxTokens": 200000
+        },
+        {
+          "id": "oc-deepseek-v4-flash-free",
+          "name": "Oc Deepseek V4 Flash Free",
+          "contextWindow": 200000,
+          "maxTokens": 200000
+        },
+        {
+          "id": "of-deepseek-v4-flash-free",
+          "name": "Of Deepseek V4 Flash Free",
+          "contextWindow": 200000,
+          "maxTokens": 200000
+        },
+        {
+          "id": "of-glm-5.2",
+          "name": "Of Glm 5.2",
+          "contextWindow": 200000,
+          "maxTokens": 200000
+        },
+        {
+          "id": "xah-claude-sonnet-5",
+          "name": "Xah Claude Sonnet 5",
+          "contextWindow": 200000,
+          "maxTokens": 200000
+        },
+        {
+          "id": "xah-gpt-5.5-xhigh",
+          "name": "Xah Gpt 5.5 Xhigh",
+          "contextWindow": 200000,
+          "maxTokens": 200000
+        }
+      ],
+      "apiKey": "YOUR_X220_API_KEY"
+    }
+  }
+}
