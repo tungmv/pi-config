@@ -1,10 +1,10 @@
 {
   "enableSkillCommands": true,
   "skills": [],
-  "lastChangelogVersion": "0.80.3",
+  "lastChangelogVersion": "0.80.6",
   "theme": "dark",
   "defaultProvider": "x220",
-  "defaultModel": "sf-hy3",
+  "defaultModel": "oc-deepseek-v4-flash",
   "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-delete-session",
@@ -15,8 +15,9 @@
         "*"
       ]
     },
-    "git:github.com/pasky/pi-session-summary",
-    "npm:@tintinweb/pi-subagents"
+    "npm:@tintinweb/pi-subagents",
+    "npm:pi-hermes-memory",
+    "npm:@narumitw/pi-plan-mode"
   ],
   "enableInstallTelemetry": false,
   "hideThinkingBlock": true
