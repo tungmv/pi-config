@@ -1,0 +1,12 @@
+{
+  "agentmail": {
+    "api_base": "https://api.agentmail.to",
+    "api_version": "v0",
+    "api_key": "YOUR_AGENTMAIL_API_KEY",
+    "api_key_env": "AGENTMAIL_API_KEY",
+    "inbox": "YOUR_AGENTMAIL_INBOX@agentmail.to",
+    "inbox_env": "AGENTMAIL_INBOX",
+    "from_name": "Your Name",
+    "from_email": "you@example.com"
+  }
+}

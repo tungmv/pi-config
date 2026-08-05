@@ -1,71 +1,161 @@
 {
   "providers": {
     "x220": {
-      "baseUrl": "http://x220:4000/v1",
+      "baseUrl": "http://x220:8317/v1",
       "api": "openai-completions",
+      "apiKey": "YOUR_X220_API_KEY",
       "models": [
         {
-          "id": "nv-deepseek-v4-pro",
-          "name": "Nv Deepseek V4 Pro",
+          "id": "or-free",
+          "name": "or-free",
           "contextWindow": 200000,
-          "maxTokens": 200000
+          "maxTokens": 128000
         },
         {
-          "id": "nw-glm-5.2-flex",
-          "name": "Nw Glm 5.2 Flex",
-          "contextWindow": 200000,
-          "maxTokens": 200000
+          "id": "gpt-5.6-terra",
+          "name": "gpt-5.6-terra",
+          "contextWindow": 372000,
+          "maxTokens": 128000
         },
         {
-          "id": "nw-glm-5.2-short-fast-flex",
-          "name": "Nw Glm 5.2 Short Fast Flex",
-          "contextWindow": 200000,
-          "maxTokens": 200000
+          "id": "gpt-5.6-luna",
+          "name": "gpt-5.6-luna",
+          "contextWindow": 372000,
+          "maxTokens": 128000
         },
         {
-          "id": "nw-kimi-k2.6-fast",
-          "name": "Nw Kimi K2.6 Fast",
+          "id": "claude-opus-4-6-thinking",
+          "name": "claude-opus-4-6-thinking",
           "contextWindow": 200000,
-          "maxTokens": 200000
+          "maxTokens": 64000
         },
         {
-          "id": "oc-hy3-free",
-          "name": "Oc Hy3 Free",
+          "id": "gemini-3-flash-agent",
+          "name": "gemini-3-flash-agent",
           "contextWindow": 200000,
-          "maxTokens": 200000
+          "maxTokens": 128000
         },
         {
-          "id": "oc-deepseek-v4-flash-free",
-          "name": "Oc Deepseek V4 Flash Free",
+          "id": "gpt-oss-120b-medium",
+          "name": "gpt-oss-120b-medium",
           "contextWindow": 200000,
-          "maxTokens": 200000
+          "maxTokens": 128000
         },
         {
-          "id": "of-deepseek-v4-flash-free",
-          "name": "Of Deepseek V4 Flash Free",
+          "id": "gemini-3.1-flash-lite",
+          "name": "gemini-3.1-flash-lite",
           "contextWindow": 200000,
-          "maxTokens": 200000
+          "maxTokens": 128000
         },
         {
-          "id": "of-glm-5.2",
-          "name": "Of Glm 5.2",
+          "id": "gemini-3.5-flash-low",
+          "name": "gemini-3.5-flash-low",
           "contextWindow": 200000,
-          "maxTokens": 200000
+          "maxTokens": 128000
         },
         {
-          "id": "xah-claude-sonnet-5",
-          "name": "Xah Claude Sonnet 5",
+          "id": "xah-deepseek-v4-flash-free",
+          "name": "xah-deepseek-v4-flash-free",
           "contextWindow": 200000,
-          "maxTokens": 200000
+          "maxTokens": 128000
         },
         {
-          "id": "xah-gpt-5.5-xhigh",
-          "name": "Xah Gpt 5.5 Xhigh",
+          "id": "gpt-5.3-codex-spark",
+          "name": "gpt-5.3-codex-spark",
           "contextWindow": 200000,
-          "maxTokens": 200000
+          "maxTokens": 128000
+        },
+        {
+          "id": "gpt-5.5",
+          "name": "gpt-5.5",
+          "contextWindow": 272000,
+          "maxTokens": 128000
+        },
+        {
+          "id": "gemini-pro-agent",
+          "name": "gemini-pro-agent",
+          "contextWindow": 200000,
+          "maxTokens": 128000
+        },
+        {
+          "id": "gemini-3.1-pro-low",
+          "name": "gemini-3.1-pro-low",
+          "contextWindow": 200000,
+          "maxTokens": 128000
+        },
+        {
+          "id": "gemini-3.5-flash-extra-low",
+          "name": "gemini-3.5-flash-extra-low",
+          "contextWindow": 200000,
+          "maxTokens": 128000
+        },
+        {
+          "id": "gpt-5.4",
+          "name": "gpt-5.4",
+          "contextWindow": 272000,
+          "maxTokens": 128000
+        },
+        {
+          "id": "gpt-5.4-mini",
+          "name": "gpt-5.4-mini",
+          "contextWindow": 272000,
+          "maxTokens": 128000
+        },
+        {
+          "id": "gpt-5.6-sol",
+          "name": "gpt-5.6-sol",
+          "contextWindow": 372000,
+          "maxTokens": 128000
+        },
+        {
+          "id": "gpt-image-1.5",
+          "name": "gpt-image-1.5",
+          "contextWindow": 200000,
+          "maxTokens": 128000
+        },
+        {
+          "id": "gemini-3.6-flash-high",
+          "name": "gemini-3.6-flash-high",
+          "contextWindow": 200000,
+          "maxTokens": 128000
+        },
+        {
+          "id": "oc-deepseek-v4-flash",
+          "name": "oc-deepseek-v4-flash",
+          "contextWindow": 200000,
+          "maxTokens": 128000
+        },
+        {
+          "id": "codex-auto-review",
+          "name": "codex-auto-review",
+          "contextWindow": 200000,
+          "maxTokens": 128000
+        },
+        {
+          "id": "gpt-image-2",
+          "name": "gpt-image-2",
+          "contextWindow": 200000,
+          "maxTokens": 128000
+        },
+        {
+          "id": "claude-sonnet-4-6",
+          "name": "claude-sonnet-4-6",
+          "contextWindow": 200000,
+          "maxTokens": 64000
+        },
+        {
+          "id": "gemini-3-flash",
+          "name": "gemini-3-flash",
+          "contextWindow": 200000,
+          "maxTokens": 128000
+        },
+        {
+          "id": "gemini-3.1-flash-image",
+          "name": "gemini-3.1-flash-image",
+          "contextWindow": 200000,
+          "maxTokens": 128000
         }
-      ],
-      "apiKey": "YOUR_X220_API_KEY"
+      ]
     }
   }
 }

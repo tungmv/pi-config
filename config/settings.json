@@ -1,7 +1,7 @@
 {
   "enableSkillCommands": true,
   "skills": [],
-  "lastChangelogVersion": "0.80.6",
+  "lastChangelogVersion": "0.83.0",
   "theme": "dark",
   "defaultProvider": "x220",
   "defaultModel": "oc-deepseek-v4-flash",
@@ -17,7 +17,11 @@
     },
     "npm:@tintinweb/pi-subagents",
     "npm:pi-hermes-memory",
-    "npm:@narumitw/pi-plan-mode"
+    "npm:@narumitw/pi-plan-mode",
+    "npm:pi-openwiki",
+    "npm:pi-mcp-adapter",
+    "npm:context-mode",
+    "../../build/playwright-bot-bypass"
   ],
   "enableInstallTelemetry": false,
   "hideThinkingBlock": true

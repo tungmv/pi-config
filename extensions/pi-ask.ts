@@ -14,7 +14,12 @@
  * Usage:
  *   /ask How does dependency injection work in this codebase?
  *   /ask Where is the auth middleware applied?
+ *   /ask What's the latest version of React and how are we using it?
  *   /ask What's the difference between Promise.all and Promise.allSettled?
+ *
+ * Web search: web_search is available during /ask turns, so the model can
+ * look up documentation, definitions, current information, or explanations
+ * beyond the codebase — all without any state-modifying access.
  *
  * Placement: ~/.pi/agent/extensions/pi-ask.ts (auto-discovered globally).
  * Reload with /reload after editing.
@@ -25,8 +30,10 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 /**
  * Built-in tools available during an /ask turn.
  * Everything state-modifying (write, edit, Agent subagents, etc.) is omitted.
+ * web_search is included because it's read-only — it searches the web and
+ * returns results without modifying any state.
  */
-const ASK_TOOL_NAMES = ["read", "grep", "find", "ls", "bash"];
+const ASK_TOOL_NAMES = ["read", "grep", "find", "ls", "bash", "web_search"];
 
 /**
  * Instructions appended to the system prompt for the /ask turn.
@@ -39,9 +46,11 @@ codebase, but WITHOUT any side effects on their system. For this turn you MAY:
 
 - Read files with \`read\`.
 - Search the codebase with \`grep\`, \`find\`, \`ls\`.
+- Search the web with \`web_search\` for broader context, definitions,
+  documentation, explanations, or current information beyond the codebase.
 - Run READ-ONLY shell commands with \`bash\` (e.g. \`rg\`, \`git log\`,
-  \`git diff\`, \`wc -l\`, \`cat\`, \`head\`). Destructive commands are blocked
-  automatically.
+  \`git diff\`, \`wc -l\`, \`cat\`, \`head\`, \`curl\`, \`wget\`, \`http\`,
+  \`gh api\`, \`gh repo view\`). Destructive commands are blocked automatically.
 
 For this turn you MUST NOT:
 - Write, edit, create, or delete any files (\`edit\` and \`write\` are disabled).
@@ -49,9 +58,11 @@ For this turn you MUST NOT:
   installs, git mutations, sudo, editors, redirections like >, etc.).
 - Spawn sub-agents or run tools that modify state.
 
-Answer the question directly and concisely. Cite the specific files and line
-numbers you relied on. If the answer cannot be determined from the codebase,
-say so rather than guessing. Keep the answer focused and self-contained.
+Answer the question directly and concisely. For codebase-specific questions,
+cite the specific files and line numbers you relied on. When using web results,
+reference the sources. If the answer cannot be determined from either the
+codebase or the web, say so rather than guessing. Keep the answer focused and
+self-contained.
 `.trim();
 
 // --- Read-only bash guard -------------------------------------------------
@@ -141,6 +152,10 @@ const SAFE_PATTERNS = [
 	/^\s*fd\b/,
 	/^\s*bat\b/,
 	/^\s*eza\b/,
+	/^\s*curl\b/,
+	/^\s*wget\b/,
+	/^\s*http\b/,
+	/^\s*gh\s+(api|repo\s+view|issue\s+list|pr\s+list|workflow\s+list|run\s+list|workflow\s+view|repo\s+list|gist\s+list|secret\s+list|variable\s+list)\b/i,
 ];
 
 function isReadOnlyCommand(command: string): boolean {
@@ -158,7 +173,7 @@ export default function piAsk(pi: ExtensionAPI) {
 	let toolsBeforeAsk: string[] | undefined;
 
 	pi.registerCommand("ask", {
-		description: "Ask a question — the model answers from the codebase using read-only tools only",
+		description: "Ask a question — the model answers from the codebase (and optionally web search) using read-only tools only",
 		handler: async (args, ctx) => {
 			const question = args.trim();
 			if (!question) {

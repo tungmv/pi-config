@@ -1,3 +1,6 @@
 {
-  "deepseek": "YOUR_DEEPSEEK_API_KEY"
+  "deepseek": {
+    "type": "api_key",
+    "key": "YOUR_DEEPSEEK_API_KEY"
+  }
 }
