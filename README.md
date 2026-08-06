@@ -8,6 +8,7 @@ This repo contains:
 
 ```
 README.md            # this guide
+setup.sh             # one-shot installer (automates everything below)
 config/              # pi agent config files (secrets replaced with placeholders)
   settings.json      # live copy of ~/.pi/agent/settings.json
   models.json        # snapshot of the x220 catalog (extension fetches it live)
@@ -17,8 +18,6 @@ extensions/          # pi extensions (drop into ~/.pi/agent/extensions/)
   fetch-models-x220.ts
   pi-ask.ts
   autofile.ts
-  herdr-agent-state.ts
-  orca-agent-status.ts
 skills/              # pi skills (drop into ~/.pi/agent/skills/)
   agentmail/
 npm/                 # reference: resolved package versions (~/.pi/agent/npm/package.json)
@@ -29,6 +28,32 @@ shell/               # shell snippets to source from ~/.bashrc / ~/.bash_aliases
 > The `x220` host name refers to this machine. If you are reproducing this on
 > another box, replace `x220` with your hostname / model-server address
 > everywhere (and in `fetch-models-x220.ts`).
+
+> herdr / orca managed extensions are **not** shipped here — those are installed
+> by their own tools (`herdr`, `Orca`), not cloned from this repo.
+
+---
+
+## 0. One-shot installer — `setup.sh`
+
+Run `./setup.sh` to automate everything below. It is idempotent (safe to run)
+and performs these steps:
+
+1. Checks prerequisites (`node` >= 18, `npm`, `git`, `curl`).
+2. Sets the user-local npm prefix and installs pi globally.
+3. Adds the npm-global bin to `PATH` in `~/.bashrc` (only once).
+4. Copies `config/`, `extensions/`, and `skills/` into `~/.pi/agent`.
+5. Deploys `auth.json` from the template.
+6. Appends provider env-var placeholders to `~/.bashrc` (only once).
+
+```bash
+./setup.sh            # interactive (safe defaults, prompts for secrets)
+./setup.sh --yes      # non-interactive; use placeholder secrets
+./setup.sh --help     # options / exit codes
+```
+
+Still fill in your real secrets (Section 3) and `source ~/.bashrc` afterwards.
+The step-by-step guide below automates the same work.
 
 ---
 
@@ -161,7 +186,7 @@ with your own — do not commit the real key.
 
 ## 5. Extensions
 
-Extensions live in `~/.pi/agent/extensions/`. This setup uses five:
+Extensions live in `~/.pi/agent/extensions/`. This setup uses three:
 
 - **`fetch-models-x220.ts`** — fetches the model catalog from the local
   OpenAI-compatible proxy at `http://x220:8317` and registers it as the `x220`
@@ -172,10 +197,9 @@ Extensions live in `~/.pi/agent/extensions/`. This setup uses five:
   allowlist, plus `web_search`), then exits — no state-modifying access.
 - **`autofile.ts`** — `@path` autocompletion in the editor; `@file` references
   are expanded inline with the file content before sending.
-- **`herdr-agent-state.ts`** — installed by **herdr** (managed file; reports
-  session state over a local socket). Do not edit — put custom hooks beside it.
-- **`orca-agent-status.ts`** — installed by **Orca** (managed file; posts
-  session/status snapshots to the Orca hook endpoint).
+
+(herdr and orca managed extensions are installed by their own tools and are not
+part of this repo's `extensions/`.)
 
 The `settings.json` `packages` array pulls in these pi packages/extensions
 automatically on first run:
@@ -249,6 +273,10 @@ any time with `/fetch`.
 ## 9. Restoring on a fresh machine (tl;dr)
 
 ```bash
+# Fastest: let the script do everything below, then fill in your secrets
+./setup.sh
+
+# ...or manually:
 # 1. Node + npm (Section 1)
 # 2. Install pi (Section 2)
 npm config set prefix '~/.npm-global'

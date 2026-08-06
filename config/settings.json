@@ -20,8 +20,7 @@
     "npm:@narumitw/pi-plan-mode",
     "npm:pi-openwiki",
     "npm:pi-mcp-adapter",
-    "npm:context-mode",
-    "../../build/playwright-bot-bypass"
+    "npm:context-mode"
   ],
   "enableInstallTelemetry": false,
   "hideThinkingBlock": true
