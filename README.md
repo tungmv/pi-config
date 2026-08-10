@@ -205,13 +205,10 @@ The `settings.json` `packages` array pulls in these pi packages/extensions
 automatically on first run:
 
 - `npm:pi-delete-session`
-- `npm:pi-web-access` (with all its extensions)
 - `npm:@tintinweb/pi-subagents`
 - `npm:pi-hermes-memory`
 - `npm:@narumitw/pi-plan-mode`
-- `npm:pi-openwiki`
 - `npm:pi-mcp-adapter`
-- `npm:context-mode`
 - `../../build/playwright-bot-bypass` — **machine-specific local path** on this
   box; remove or replace with your own path on a fresh machine.
 

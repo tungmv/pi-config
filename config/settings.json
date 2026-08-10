@@ -8,19 +8,10 @@
   "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-delete-session",
-    {
-      "source": "npm:pi-web-access",
-      "skills": [],
-      "extensions": [
-        "*"
-      ]
-    },
     "npm:@tintinweb/pi-subagents",
     "npm:pi-hermes-memory",
     "npm:@narumitw/pi-plan-mode",
-    "npm:pi-openwiki",
-    "npm:pi-mcp-adapter",
-    "npm:context-mode"
+    "npm:pi-mcp-adapter"
   ],
   "enableInstallTelemetry": false,
   "hideThinkingBlock": true
