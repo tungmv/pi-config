@@ -204,7 +204,6 @@ part of this repo's `extensions/`.)
 The `settings.json` `packages` array pulls in these pi packages/extensions
 automatically on first run:
 
-- `npm:pi-delete-session`
 - `npm:@tintinweb/pi-subagents`
 - `npm:pi-hermes-memory`
 - `npm:@narumitw/pi-plan-mode`
