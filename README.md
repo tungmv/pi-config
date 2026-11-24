@@ -18,6 +18,7 @@ extensions/          # pi extensions (drop into ~/.pi/agent/extensions/)
   fetch-models-x220.ts
   pi-ask.ts
   autofile.ts
+  session-limit.ts
 skills/              # pi skills (drop into ~/.pi/agent/skills/)
   agentmail/
 npm/                 # reference: resolved package versions (~/.pi/agent/npm/package.json)
@@ -186,7 +187,7 @@ with your own — do not commit the real key.
 
 ## 5. Extensions
 
-Extensions live in `~/.pi/agent/extensions/`. This setup uses three:
+Extensions live in `~/.pi/agent/extensions/`. This setup uses four:
 
 - **`fetch-models-x220.ts`** — fetches the model catalog from the local
   OpenAI-compatible proxy at `http://x220:8317` and registers it as the `x220`
@@ -197,6 +198,16 @@ Extensions live in `~/.pi/agent/extensions/`. This setup uses three:
   allowlist, plus `web_search`), then exits — no state-modifying access.
 - **`autofile.ts`** — `@path` autocompletion in the editor; `@file` references
   are expanded inline with the file content before sending.
+- **`session-limit.ts`** — keeps at most N stored sessions per project
+  directory (N defaults to 20) and prunes the oldest ones on session start. The
+  current session and anything modified in the last 10 minutes are never
+  deleted; pruning goes through `trash` / `trash-put` / `gio trash` so removed
+  sessions stay recoverable, and falls back to unlinking only when no trash
+  tool is installed. `/session-limit` shows the limit, dir and count;
+  `/session-limit <N>` sets it and prunes (`0` / `off` disables),
+  `/session-limit prune` prunes now, `/session-limit reset` drops the override.
+  The limit is read from `~/.pi/agent/session-limit.json`, then the
+  `sessionLimit` number in `settings.json`, then the default 20.
 
 (herdr and orca managed extensions are installed by their own tools and are not
 part of this repo's `extensions/`.)
